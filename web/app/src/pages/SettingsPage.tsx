@@ -1,4 +1,5 @@
 import { ChevronRight, Users } from 'lucide-react';
+import { isDesktop } from '@/desktop';
 import { lazy, Suspense, useState, type ComponentType, type ReactNode } from 'react';
 import { MdOutlineExtension } from 'react-icons/md';
 import { SiApplemusic, SiDiscord, SiSpotify, SiYoutubemusic } from 'react-icons/si';
@@ -99,7 +100,7 @@ export default function SettingsPage() {
           <LinkRow
             to="/extension"
             icon={<Glyph Icon={MdOutlineExtension} color="#636366" />}
-            title="BitChord Extension"
+            title={isDesktop ? 'BitChord for Windows' : 'BitChord Extension'}
             value={present ? `v${extension.extension.info.version}` : 'Not installed'}
           />
         </section>
@@ -121,7 +122,7 @@ export default function SettingsPage() {
         <section className={settingsUi.group}>
           <div className={settingsUi.integration}>
             <Glyph Icon={SiApplemusic} color="#fa2d48" />
-            <span className={settingsUi.integrationName}>Extension Access</span>
+            <span className={settingsUi.integrationName}>{isDesktop ? 'Service Access' : 'Extension Access'}</span>
             {present ? <AppleMusicIntegration /> : <span className={settingsUi.value}>Needs the extension</span>}
           </div>
           <AppleMusicToggles />

@@ -5,5 +5,11 @@ dist/
 *.tsbuildinfo
 .env.local
 
+# Local dependency stores and portable profiles
+.pnpm-store/
+.pnpm-cache/
+.pnpm-state/
+desktop/data/
+
 # Built extension zips (web/extension: pnpm package)
 app/public/downloads/

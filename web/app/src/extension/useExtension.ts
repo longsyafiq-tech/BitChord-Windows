@@ -1,4 +1,5 @@
 import { detectExtension, type DetectedExtension } from '@bitchord/shared/bridge';
+import { detectDesktop, isDesktop } from '@/desktop';
 import { useQuery } from '@tanstack/react-query';
 import { config } from '@/config';
 import { queryClient } from '@/lib/queryClient';
@@ -25,6 +26,7 @@ const SLOW_RECHECK_MS = 5000;
  * its own when the worker is back; a removed extension fails each call instead.
  */
 async function detect(): Promise<DetectedExtension | null> {
+  if (isDesktop) return detectDesktop();
   const known = queryClient.getQueryData<DetectedExtension | null>(extensionQueryKey) ?? null;
   const found = await detectExtension({ chromiumExtensionId: config.chromiumExtensionId });
   if (found || !known) return found;

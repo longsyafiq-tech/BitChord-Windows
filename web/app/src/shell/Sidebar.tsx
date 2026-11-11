@@ -1,5 +1,6 @@
 import { ArrowUpRight, ListMusic, Settings } from 'lucide-react';
 import { MdOutlineExtension } from 'react-icons/md';
+import { isDesktop } from '@/desktop';
 import { PrefetchLink, PrefetchNavLink } from '@/components/PrefetchLink';
 import { LogoMark } from '@/components/icons/LogoMark';
 import {
@@ -168,7 +169,7 @@ export function Sidebar() {
             <span className={icon}>
               <MdOutlineExtension size={18} />
             </span>
-            <span className={navLabel}>BitChord Extension</span>
+            <span className={navLabel}>{isDesktop ? 'BitChord for Windows' : 'BitChord Extension'}</span>
             {update.state === 'available' && (
               <span className="ml-auto rounded-[10px] bg-key px-[7px] py-0.5 type-subhead-emphasized text-white" title={`Version ${update.latest.version} is available`}>
                 Update

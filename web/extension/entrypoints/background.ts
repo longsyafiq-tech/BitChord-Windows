@@ -53,7 +53,7 @@ function failure(id: string, error: unknown): BridgeResponse {
   return errorResponse(id, code, error instanceof Error ? error.message : String(error));
 }
 
-async function handle(request: BridgeRequest): Promise<BridgeResponse> {
+export async function handle(request: BridgeRequest): Promise<BridgeResponse> {
   if (request.protocol !== BRIDGE_PROTOCOL) {
     return errorResponse(
       request.id,

@@ -25,7 +25,8 @@ function requirePartyServer(mode: string): void {
 }
 
 export default defineConfig(({ command, mode }) => {
-  if (command === 'build') requirePartyServer(mode);
+  // A community desktop build can use the existing custom-server setting.
+  if (command === 'build' && mode !== 'desktop') requirePartyServer(mode);
   return {
     plugins: [react(), tailwindcss()],
     define: {

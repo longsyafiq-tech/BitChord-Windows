@@ -1,4 +1,6 @@
 import { ChevronRight } from 'lucide-react';
+import { isDesktop } from '@/desktop';
+import DesktopPage from './DesktopPage';
 import { useState, type ComponentType } from 'react';
 import { FaChrome, FaFirefoxBrowser } from 'react-icons/fa';
 import { SiDiscord, SiSpotify, SiYoutubemusic } from 'react-icons/si';
@@ -107,6 +109,10 @@ function integrationStatus(status: ExtensionStatus, integration: Integration, au
 }
 
 export default function ExtensionPage() {
+  return isDesktop ? <DesktopPage /> : <BrowserExtensionPage />;
+}
+
+function BrowserExtensionPage() {
   const status = useExtension();
   const update = useExtensionUpdate();
   const DOWNLOADS = downloadsFor(usePublishedExtension());

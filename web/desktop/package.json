@@ -1,0 +1,44 @@
+{
+  "name": "bitchord-windows",
+  "version": "1.9.1-desktop.1",
+  "description": "An unofficial Windows port of BitChord v1.9.1's web player",
+  "author": "BitChord contributors",
+  "license": "GPL-3.0-only",
+  "private": true,
+  "type": "module",
+  "main": "dist/main.cjs",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "electron .",
+    "test": "node --test test/*.test.mjs",
+    "package": "electron-builder --win nsis --x64",
+    "package:dir": "electron-builder --win --x64 --dir",
+    "package:portable": "node package-portable.mjs"
+  },
+  "devDependencies": {
+    "electron": "45.3.0",
+    "electron-builder": "26.18.0",
+    "esbuild": "0.27.4"
+  },
+  "build": {
+    "appId": "org.bitchord.community.windows",
+    "productName": "BitChord Windows",
+    "artifactName": "BitChord-1.9.1-desktop.1-windows-x64-setup.${ext}",
+    "directories": { "output": "release" },
+    "files": ["dist/**/*", "package.json"],
+    "extraResources": [
+      { "from": "../app/dist", "to": "player" },
+      { "from": "../../LICENSE", "to": "LICENSE-BitChord.txt" },
+      { "from": "README.md", "to": "README-Windows.md" },
+      { "from": "../../Logo.png", "to": "icon.png" }
+    ],
+    "win": { "target": "nsis", "signAndEditExecutable": false },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "license": "../../LICENSE"
+    }
+  }
+}
